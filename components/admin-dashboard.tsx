@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { supabase } from "@/lib/supabase";
 
 export function AdminDashboard() {
@@ -60,9 +62,17 @@ export function AdminDashboard() {
             Signed in as {email ?? "Admin"}
           </p>
         </div>
-        <Button type="button" variant="outline" onClick={handleSignOut}>
-          Sign out
-        </Button>
+        <div className="flex flex-wrap gap-2">
+          <Link
+            href="/admin/appointments"
+            className={cn(buttonVariants({ variant: "outline" }))}
+          >
+            Appointments
+          </Link>
+          <Button type="button" variant="outline" onClick={handleSignOut}>
+            Sign out
+          </Button>
+        </div>
       </div>
       <p className="mt-8 text-muted-foreground">
         Use this area for appointment management and site tools when you are ready to
